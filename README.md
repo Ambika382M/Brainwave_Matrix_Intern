@@ -17,7 +17,8 @@ The To-do List application is designed to help users effectively manage their ta
 	• Task Completion: Users can mark completed tasks as such, providing a sense of accomplishment and helping to focus on remaining tasks
 	• Browser Refreshing: Persist the list of tasks even after refreshing the page using local storage.
 	• Task Deletion: Unnecessary or completed tasks can be removed from the list by taking the confirmation from the user by displaying the Confirm box then 
-        based on the choice of the user the task data will be deleted permanently.  
+        based on the choice of the user the task data will be deleted permanently. 
+	
 **Usage**
 	1. Create Tasks: Enter the task by provided input field "enter your tasks". And then click in the "Add" button
 	2. Mark Tasks as Completed: Check the "Completed" box next to a task to mark it as finished
