@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>To-Do List</title>
+    </head>
+    <style>
+       @media (max-width: 768px) {
+  /* Mobile-specific styles */
+  body {
+    font-size: 16px;
+  }
+
+  .container {
+    padding: 10px;
+  }
+  #addlist{
+    padding: 15px;
+    position: 10px;
+  }
+
+
+}
+        *{
+            
+            box-sizing: border-box;
+        }
+       
+        body{
+            background:linear-gradient(136deg, rgb(244, 94, 119), rgb(161, 158, 158),rgb(128, 4, 25));
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            max-width: 540px;
+            margin: 1px auto 20px;
+            padding: 1px 2px 15px;
+            min-height: 100vh;
+        }
+        .container{
+            background: linear-gradient( 136deg, rgb(74, 72, 72), rgb(45, 43, 43));
+            border-radius: 20px;
+            width: 100%;
+            padding: 40px 30px 70px; 
+            max-width: 540px;
+            margin: 100px auto 20px;
+            box-shadow: 0 0 20px;
+        }
+        h2{
+            color:rgb(246, 249, 251);
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 27px;
+        }
+        .create-list{
+            display: flex;
+            border-radius: 15px;
+            padding-left: 10px;
+            margin-bottom: 20px; 
+            
+        }
+        .create-list input{
+            font-size: 17px;
+            padding: 12px;
+            flex: 1;
+            border-radius: 16px;
+
+        }
+        #addlist{                                   
+            background-color: aliceblue;
+            color: black;
+            padding: 16px 20px;
+            font-size: 13px;
+            border-radius: 16px;
+        }
+        .listitems{
+            font-size:19px;
+            color: rgb(255, 252, 252);
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .listitems li{
+            list-style: none;
+            line-height: 2.5;
+            position: relative; 
+                 
+        }
+        .listitems li::before{
+            content: '☐';
+            font-size: 16px;
+            padding-right: 10px;
+        }
+        .listitems li.checked::before{
+            content: '🗹';
+            font-size: 16px;
+            padding-right: 10px;
+        }
+        .listitems li.checked{
+            text-decoration: line-through;
+            background-color: #121212;
+            margin: 8px 0;
+            border-radius: 10px;
+            padding: 5px 0;    
+        }
+        .del-btn{
+            background-color:#848888;
+            font-size: 13px;
+            border-radius: 5px;
+            position: absolute;
+            padding: 4px 8px;
+            right: 10px;
+        }
+        .filter-container {
+            margin-bottom: 10px;
+        }
+
+        .filter-container input, .filter-container label {
+            font-size: 16px;
+        }
+
+    </style>
+    <body>
+       
+        <div class="container">
+            <h2><u>To-Do List</u></h2>
+            <div class="create-list">
+                <input type="text" id="create-list" placeholder="Enter Your Tasks">
+                <button id="addlist">Add</button><br>
+            </div>
+            <ul class="listitems">
+              <!--<li>Complete the Task<span class="del-btn">🗙</span></li>
+              <li class="checked">submitt the task<span class="del-btn">🗙</span></li>-->
+            </ul>
+        </div>
+        <script>
+            let allList = document.querySelector('.listitems');//ul
+            let createList = document.getElementById('create-list');//input
+            let createBtn = document.getElementById('addlist');//btn
+            
+            
+            createBtn.addEventListener('click',function()
+            {
+                if(createList.value === "")
+                {
+                    alert('Enter the Task');
+                }
+                else{
+                    //create li
+                    let list = document.createElement('li');
+                    list.innerText= createList.value;
+
+                    //create span del btn
+                    let spanbtn = document.createElement('span');
+                    spanbtn.className= 'del-btn';
+                    spanbtn.innerText='🗙'; 
+                    list.appendChild(spanbtn);//li
+                    allList.appendChild(list);//ul
+                }
+                 createList.value="";
+                 savePresentData();
+                
+            });
+           
+
+            allList.addEventListener('click', function (e){
+                console.log(e);
+                if(e.target.tagName === 'LI'){
+                    e.target.classList.toggle('checked');
+                    savePresentData();
+                }
+                else if(e.target.tagName === 'SPAN'){
+                    if(confirm('Are you Sure')){
+                    e.target.parentElement.remove();
+                    savePresentData();
+                    }else
+                    savePresentData();
+                }
+                });
+            function savePresentData(){
+                localStorage.setItem('data', allList.innerHTML);
+            }
+            function showSavedData(){
+                allList.innerHTML = localStorage.getItem('data');
+            }
+            showSavedData();
+
+
+            
+        </script>
+
+    </body>
+
+</html>
