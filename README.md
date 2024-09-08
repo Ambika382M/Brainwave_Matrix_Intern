@@ -24,4 +24,6 @@ The To-do List application is designed to help users effectively manage their ta
 	2. Mark Tasks as Completed: Check the "Completed" box next to a task to mark it as finished
         3. Delete Tasks: Use the provided options whether to keep it or remove tasks by confirming as needed.
 
+ 
+
 
